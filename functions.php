@@ -2,7 +2,7 @@
 # makes use of system() instead of mysqli. Need 2>&1 to output response to browser instead of Apache error log
 function exec_command($command)
 {
-	echo "<code>shell$ " . $command . "</code>";
+	echo "<code>" . date(Y-m-d-G:i:s) . "shell$ " . $command . "</code>";
 	echo "<pre>";
 	system ($command, $return_value);
 	echo "Return value:" . $return_value;
