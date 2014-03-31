@@ -23,6 +23,10 @@ foreach ($file_contents_neat as $key => $file_neat)
 
 foreach ($file_names_full as $sql)
 {
-	import_sql(LOCAL_SERVER, LOCAL_USER, LOCAL_PASSWORD, LOCAL_WORDPRESS_DB, $sql);
+	$return=import_sql(LOCAL_SERVER, LOCAL_USER, LOCAL_PASSWORD, LOCAL_WORDPRESS_DB, $sql);
+	
+	if ($return == 1) {
+		exit ('Import file caused sql error. Exit script.');
+	}
 }
 ?>
