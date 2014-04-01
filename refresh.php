@@ -1,8 +1,8 @@
 <?php
-require 'functions.php';
-require 'config.php';
+include_once('functions.php');
+include_once('config.php');
 
-define (PRODUCTION_DB_DUMP_FILE, "wordpressunified-2014-03-27-15-29-59.sql");
+define (PRODUCTION_DB_DUMP_FILE, "wordpressunified-2014-03-31-17-14-09.sql");
 
 # refresh local copy of wordpressunified db
 refresh_db(LOCAL_SERVER, LOCAL_USER, LOCAL_PASSWORD, LOCAL_WORDPRESS_DB, PRODUCTION_DB_DUMP_FILE);

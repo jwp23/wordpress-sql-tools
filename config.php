@@ -5,6 +5,7 @@ define (PRODUCTION_SERVER, "pwop-mys000.dc1.beachbody.com");
 define (PRODUCTION_USER, "wpuser");
 define (PRODUCTION_PASSWORD, "b3achb0dy!");
 define (PRODUCTION_DB, "wordpressunified");
+define (PRODUCTION_DB_DUMP_FILE, "wordpressunified-2014-03-31-17-14-09.sql");
 
 # local database environment information
 define (LOCAL_SERVER, "localhost");
