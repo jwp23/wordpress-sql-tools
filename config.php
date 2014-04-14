@@ -19,3 +19,4 @@ define ("UPDATE_LOCAL_SITES", "update-to-local.sql"); // sql file to modify prod
 
 define ("LOCAL_PREFIX", "/Users/jpresley/Sites/wordpressunified/sql/");
 define ("IMPORT_FILES", "import-files.txt");
+define ("MYSQL_PATH", "/usr/local/mysql/bin/");

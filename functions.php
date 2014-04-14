@@ -13,24 +13,24 @@ function exec_command($command)
 
 function dump_db($dump_server, $dump_user, $dump_password, $dump_db, $dump_sql)
 {
-	$dump="mysqldump -h $dump_server -u $dump_user -p'$dump_password' $dump_db 2>&1 > $dump_sql";
+	$dump= MYSQL_PATH . "mysqldump -h $dump_server -u $dump_user -p'$dump_password' $dump_db 2>&1 > $dump_sql";
 	exec_command($dump);
 }
 function drop_db($drop_server, $drop_user, $drop_password, $drop_db)
 {
-	$drop="mysqladmin -h $drop_server -u $drop_user -p$drop_password -f drop $drop_db 2>&1";
+	$drop= MYSQL_PATH . "mysqladmin -h $drop_server -u $drop_user -p$drop_password -f drop $drop_db 2>&1";
 	exec_command($drop);
 }
 
 function create_empty_db($create_server, $create_user, $create_password, $create_db)
 {
-	$create="mysqladmin -h $create_server -u $create_user -p$create_password create $create_db 2>&1";
+	$create= MYSQL_PATH . "mysqladmin -h $create_server -u $create_user -p$create_password create $create_db 2>&1";
 	exec_command($create);
 }
 
 function import_sql($import_server, $import_user, $import_password, $import_db, $sql_file)
 {
-	$import="mysql -h $import_server -u $import_user -p$import_password $import_db < $sql_file 2>&1";
+	$import= MYSQL_PATH . "mysql -h $import_server -u $import_user -p$import_password $import_db < $sql_file 2>&1";
 	$return_import=exec_command($import);
 	return $return_import;
 }
