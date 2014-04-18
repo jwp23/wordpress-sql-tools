@@ -19,13 +19,15 @@ function dump_db($dump_server, $dump_user, $dump_password, $dump_db, $dump_sql)
 function drop_db($drop_server, $drop_user, $drop_password, $drop_db)
 {
 	$drop= MYSQL_PATH . "mysqladmin -h $drop_server -u $drop_user -p$drop_password -f drop $drop_db 2>&1";
-	exec_command($drop);
+	$return_drop = exec_command($drop);
+	return $return_drop;
 }
 
 function create_empty_db($create_server, $create_user, $create_password, $create_db)
 {
 	$create= MYSQL_PATH . "mysqladmin -h $create_server -u $create_user -p$create_password create $create_db 2>&1";
-	exec_command($create);
+	$return_create = exec_command($create);
+	return $return_create;
 }
 
 function import_sql($import_server, $import_user, $import_password, $import_db, $sql_file)
@@ -38,13 +40,19 @@ function import_sql($import_server, $import_user, $import_password, $import_db, 
 function refresh_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original)
 {
 	#drop database
-	drop_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
+	$return_drop = drop_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
 	
 	#create empty database
-	create_empty_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
+	$return_create = create_empty_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
+	if ($return_create == 1) {
+		exit ('Create database ' . $refresh_db . ' failed. Exit script.');
+	}
 	
 	#import original sql file
-	import_sql($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
+	$return_import = import_sql($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
+	if ($return_import == 1) {
+		exit ('Import ' . $refresh_original . ' failed. Exit script.');
+	}
 }
 
 
