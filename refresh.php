@@ -1,6 +1,6 @@
 <?php
-include_once('functions.php');
-include_once('config.php');
+require_once('functions.php');
+require_once('config.php');
 
 # refresh local copy of wordpressunified db
 refresh_db(LOCAL_SERVER, LOCAL_USER, LOCAL_PASSWORD, LOCAL_WORDPRESS_DB, PRODUCTION_DB_DUMP_FILE);

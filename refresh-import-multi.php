@@ -1,4 +1,4 @@
 <?php
 
-include_once('refresh.php');
-include_once('import-multi-sql.php');
+require_once('refresh.php');
+require_once('import-multi-sql.php');

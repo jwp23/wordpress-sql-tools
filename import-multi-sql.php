@@ -1,6 +1,6 @@
 <?php
-include_once('functions.php');
-include_once('config.php');
+require_once('functions.php');
+require_once('config.php');
 
 # import list of files
 $file_contents_raw=file(IMPORT_FILES);

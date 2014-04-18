@@ -1,7 +1,7 @@
 <?php
 
-include_once('functions.php');
-include_once('config.php');
+require_once('functions.php');
+require_once('config.php');
 
 # make local copy of production database
 $production_db_dump_file="wordpressunified-" . date("Y-m-d-H-i-s") . ".sql";
