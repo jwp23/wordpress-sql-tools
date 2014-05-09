@@ -4,7 +4,7 @@ require_once('functions.php');
 require_once('config.php');
 
 # make local copy of production database
-$production_db_dump_file="wordpressunified-" . date("Y-m-d-H-i-s") . ".sql";
+$production_db_dump_file= SQL_FILES_PATH . "wordpressunified-" . date("Y-m-d-H-i-s") . ".sql";
 dump_db(PRODUCTION_SERVER, PRODUCTION_USER, PRODUCTION_PASSWORD, PRODUCTION_DB, $production_db_dump_file);
 
 # refresh local copy of production db
