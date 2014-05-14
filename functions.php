@@ -1,13 +1,19 @@
 <?php
 # makes use of system() instead of mysqli. Need 2>&1 to output response to browser instead of Apache error log
+function display_command ($command, $output, $return_value)
+{
+	echo "<code>" . date("Y-m-d-H:i:s") . "shell$ " . $command . "</code><br />";
+	
+	foreach ($output as $value) {
+		echo "<code>" . $value . "</code><br />";
+	}
+	echo "<code>Return value: " . $return_value . "</code><br />";
+}
 function exec_command($command)
 {
-	echo "<code>" . date("Y-m-d-H:i:s") . "shell$ " . $command . "</code>";
-	echo "<pre>";
-	system ($command, $return_value);
-	echo "Return value:" . $return_value;
-	echo "</pre>";
-	echo "<br>\n";
+	$output = array();
+	$results = exec ($command, $output, $return_value);
+	display_command($command, $output, $return_value);
 	return $return_value;
 }
 
@@ -32,6 +38,7 @@ function create_empty_db($create_server, $create_user, $create_password, $create
 
 function import_sql($import_server, $import_user, $import_password, $import_db, $sql_file)
 {
+	
 	$import= MYSQL_PATH . "mysql -h $import_server -u $import_user -p$import_password $import_db < $sql_file 2>&1";
 	$return_import=exec_command($import);
 	return $return_import;
