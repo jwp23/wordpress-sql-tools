@@ -7,7 +7,7 @@ function display_command ($command, $output, $return_value)
 	foreach ($output as $value) {
 		echo "<code>" . $value . "</code><br />";
 	}
-	echo "<code>Return value: " . $return_value . "</code><br />";
+	echo "<code>Return value: " . $return_value . "</code><br /><br />";
 }
 function exec_command($command)
 {
