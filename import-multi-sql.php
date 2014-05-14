@@ -8,17 +8,17 @@ $file_contents_neat=array();
 $file_removed_commented_lines=array();
 $file_names_full=array();
 
-# trim end of line character
+# trim whitespaces and other characters from beginning and end of each line
 foreach ($file_contents_raw as $key => $file_raw)
 {
-	$file_contents_neat[$key] = rtrim($file_raw);
+	$file_contents_neat[$key] = trim($file_raw);
 }
 
-# remove commented lines
+# remove commented lines or empty
 $i = 0; //set index
 foreach ($file_contents_neat as $file_lines)
 {
-	if (substr($file_lines, 0, 1) != '#') {
+	if (substr($file_lines, 0, 1) != '#' && !empty($file_lines)) {
 		$file_removed_commented_lines[$i] = $file_lines;
 		$i = $i + 1; //increase index
 	} 
