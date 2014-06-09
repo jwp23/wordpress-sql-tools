@@ -1,5 +1,6 @@
 <?php
 # makes use of system() instead of mysqli. Need 2>&1 to output response to browser instead of Apache error log
+
 function display_command ($command, $output, $return_value)
 {
 	echo "<code>" . date("Y-m-d-H:i:s") . "shell$ " . $command . "</code><br />";
@@ -20,7 +21,8 @@ function exec_command($command)
 function dump_db($dump_server, $dump_user, $dump_password, $dump_db, $dump_sql)
 {
 	$dump= MYSQL_PATH . "mysqldump -h $dump_server -u $dump_user -p'$dump_password' $dump_db 2>&1 > $dump_sql";
-	exec_command($dump);
+	$return_dump = exec_command($dump);
+	return $return_dump;
 }
 function drop_db($drop_server, $drop_user, $drop_password, $drop_db)
 {
@@ -47,10 +49,13 @@ function import_sql($import_server, $import_user, $import_password, $import_db, 
 function refresh_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original)
 {
 	#drop database
-	$return_drop = drop_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
+	$return_drop = drop_db($refresh_server, $refresh_user, $refresh_password, $refresh_db);
+	if ($return_drop == 1) {
+		exit ('Dump database ' . $refresh_db . ' failed. Exit script.');
+	}
 	
 	#create empty database
-	$return_create = create_empty_db($refresh_server, $refresh_user, $refresh_password, $refresh_db, $refresh_original);
+	$return_create = create_empty_db($refresh_server, $refresh_user, $refresh_password, $refresh_db);
 	if ($return_create == 1) {
 		exit ('Create database ' . $refresh_db . ' failed. Exit script.');
 	}
